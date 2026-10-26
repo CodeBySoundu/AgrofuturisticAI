@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Smart Irrigation Dashboard</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Chart -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="app">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>🌱 Agro AI</h2>
+    <ul>
+      <li class="active">Dashboard</li>
+      <li>Analytics</li>
+      <li>History</li>
+    </ul>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+
+    <!-- Header -->
+    <div class="topbar">
+      <h1><i class="fas fa-seedling"></i> Smart Irrigation Dashboard</h1>
+      <button>View Analytics</button>
+    </div>
+
+    <!-- KPI -->
+    <div class="cards">
+
+      <div class="card kpi">
+        <i class="fas fa-tint blue"></i>
+        <h3>Moisture</h3>
+        <p id="moistureVal">25%</p>
+      </div>
+
+      <div class="card kpi">
+        <i class="fas fa-thermometer-half yellow"></i>
+        <h3>Temperature</h3>
+        <p id="tempVal">34°C</p>
+      </div>
+
+      <div class="card kpi">
+        <i class="fas fa-leaf green"></i>
+        <h3>Status</h3>
+        <p id="statusVal">Moderate Irrigation</p>
+      </div>
+
+    </div>
+
+    <!-- Grid -->
+    <div class="grid">
+
+      <!-- Input -->
+      <div class="card form">
+        <h2><i class="fas fa-edit"></i> Input Data</h2>
+
+        <input id="moisture" type="number" placeholder="Moisture (%)">
+        <input id="temp" type="number" placeholder="Temperature (°C)">
+
+        <select id="crop">
+          <option>Rice</option>
+          <option>Wheat</option>
+          <option>Maize</option>
+        </select>
+
+        <select id="soil">
+          <option>Clay</option>
+          <option>Loamy</option>
+          <option>Sandy</option>
+        </select>
+
+        <select id="rain">
+          <option value="1">Rain Expected</option>
+          <option value="0">No Rain</option>
+        </select>
+
+        <button onclick="predict()">Check Irrigation</button>
+      </div>
+
+      <!-- Result -->
+      <div class="card result">
+        <h2 id="resultText">Moderate Irrigation</h2>
+        <p id="desc">Irrigation recommended but not urgent.</p>
+
+        <div class="info">
+          <div><b>Confidence</b><br><span id="confidence">85%</span></div>
+          <div><b>Recommendation</b><br><span id="recommend">Monitor Soil</span></div>
+        </div>
+
+        <ul id="reasons"></ul>
+      </div>
+
+    </div>
+
+    <!-- Bottom -->
+    <div class="grid">
+
+      <div class="card">
+        <h3>📉 Moisture Trend</h3>
+        <canvas id="chart"></canvas>
+      </div>
+
+      <div class="card">
+        <h3>📋 Recent Records</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Moisture</th>
+              <th>Temp</th>
+              <th>Crop</th>
+              <th>Rain</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="table"></tbody>
+        </table>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- JS -->
+<script src="script.js"></script>
+
+</body>
+</html> 
